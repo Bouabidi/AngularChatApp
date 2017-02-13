@@ -11,3 +11,8 @@ cd client
 ng serve
 
 
+http://localhost:4200/login
+
+eftir að þú loggast inn ferðu inn í rooms
+
+http://localhost:4200/rooms
