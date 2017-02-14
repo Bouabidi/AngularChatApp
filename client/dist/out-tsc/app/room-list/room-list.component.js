@@ -9,14 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { ChatService } from "../chat.service";
+import { Router } from "@angular/router";
 var RoomListComponent = (function () {
-    function RoomListComponent(chatService) {
+    function RoomListComponent(chatService, router) {
         this.chatService = chatService;
+        this.router = router;
     }
     RoomListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.chatService.getRoomList().subscribe(function (lst) {
             _this.rooms = lst;
+        });
+    };
+    RoomListComponent.prototype.onNewRoom = function () {
+        var _this = this;
+        if (this.newRoomName.length < 1) {
+            return;
+        }
+        this.chatService.addRoom(this.newRoomName).subscribe(function (succeeded) {
+            if (succeeded === true) {
+                _this.router.navigate(["rooms", _this.newRoomName]);
+            }
         });
     };
     return RoomListComponent;
@@ -27,7 +40,8 @@ RoomListComponent = __decorate([
         templateUrl: './room-list.component.html',
         styleUrls: ['./room-list.component.css']
     }),
-    __metadata("design:paramtypes", [ChatService])
+    __metadata("design:paramtypes", [ChatService,
+        Router])
 ], RoomListComponent);
 export { RoomListComponent };
 //# sourceMappingURL=../../../../src/app/room-list/room-list.component.js.map

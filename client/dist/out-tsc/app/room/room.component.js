@@ -8,20 +8,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Chat App!';
+import { Router, ActivatedRoute } from "@angular/router";
+var RoomComponent = (function () {
+    function RoomComponent(router, route) {
+        this.router = router;
+        this.route = route;
     }
-    ;
-    return AppComponent;
+    RoomComponent.prototype.ngOnInit = function () {
+        this.roomId = this.route.snapshot.params['id'];
+    };
+    return RoomComponent;
 }());
-AppComponent = __decorate([
+RoomComponent = __decorate([
     Component({
-        selector: 'app-root',
-        templateUrl: './app.component.html',
-        styleUrls: ['./app.component.css']
+        selector: 'app-room',
+        templateUrl: './room.component.html',
+        styleUrls: ['./room.component.css']
     }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
-export { AppComponent };
-//# sourceMappingURL=../../../src/app/app.component.js.map
+    __metadata("design:paramtypes", [Router,
+        ActivatedRoute])
+], RoomComponent);
+export { RoomComponent };
+//# sourceMappingURL=../../../../src/app/room/room.component.js.map

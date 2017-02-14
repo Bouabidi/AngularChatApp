@@ -41,6 +41,18 @@ var ChatService = (function () {
         });
         return obs;
     };
+    ChatService.prototype.addRoom = function (roomName) {
+        var _this = this;
+        var observable = new Observable(function (observer) {
+            var param = {
+                room: roomName
+            };
+            _this.socket.emit("joinroom", param, function (a) {
+                observer.next(a);
+            });
+        });
+        return observable;
+    };
     return ChatService;
 }());
 ChatService = __decorate([
