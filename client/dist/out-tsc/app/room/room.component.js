@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ChatService } from '../chat.service';
 var RoomComponent = (function () {
-    function RoomComponent(router, route) {
+    function RoomComponent(router, route, chatService) {
         this.router = router;
         this.route = route;
+        this.chatService = chatService;
     }
     RoomComponent.prototype.ngOnInit = function () {
         this.roomId = this.route.snapshot.params['id'];
@@ -26,7 +28,8 @@ RoomComponent = __decorate([
         styleUrls: ['./room.component.css']
     }),
     __metadata("design:paramtypes", [Router,
-        ActivatedRoute])
+        ActivatedRoute,
+        ChatService])
 ], RoomComponent);
 export { RoomComponent };
 //# sourceMappingURL=../../../../src/app/room/room.component.js.map

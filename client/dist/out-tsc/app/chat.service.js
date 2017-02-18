@@ -41,6 +41,16 @@ var ChatService = (function () {
         });
         return obs;
     };
+    ChatService.prototype.getUserList = function () {
+        var _this = this;
+        var obs = new Observable(function (observer) {
+            _this.socket.emit('users');
+            _this.socket.on('userlist', function (lst) {
+                observer.next(lst);
+            });
+        });
+        return obs;
+    };
     ChatService.prototype.addRoom = function (roomName) {
         var _this = this;
         var observable = new Observable(function (observer) {

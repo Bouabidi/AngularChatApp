@@ -20,6 +20,9 @@ var RoomListComponent = (function () {
         this.chatService.getRoomList().subscribe(function (lst) {
             _this.rooms = lst;
         });
+        this.chatService.getUserList().subscribe(function (lst) {
+            _this.users = lst;
+        });
     };
     RoomListComponent.prototype.onNewRoom = function () {
         var _this = this;

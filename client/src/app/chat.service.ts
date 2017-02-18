@@ -35,7 +35,16 @@ export class ChatService {
         observer.next(strArr);
       });
     });
+    return obs;
+  }
 
+  getUserList(): Observable<string[]> {
+    const obs = new Observable(observer => {
+      this.socket.emit('users');
+      this.socket.on('userlist', (lst) => {
+        observer.next(lst);
+      });
+    });
     return obs;
   }
 
