@@ -10,6 +10,7 @@ import { ChatService } from '../chat.service';
 export class RoomComponent implements OnInit {
 
   roomId: string;
+  message: string;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -18,5 +19,11 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.roomId = this.route.snapshot.params['id'];
   }
+
+  onSendMessage() {
+    this.chatService.sendMessage(this.roomId, this.message).subscribe(succeeded => {
+    })
+  }
+
 
 }

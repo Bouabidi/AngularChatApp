@@ -19,6 +19,10 @@ var RoomComponent = (function () {
     RoomComponent.prototype.ngOnInit = function () {
         this.roomId = this.route.snapshot.params['id'];
     };
+    RoomComponent.prototype.onSendMessage = function () {
+        this.chatService.sendMessage(this.roomId, this.message).subscribe(function (succeeded) {
+        });
+    };
     return RoomComponent;
 }());
 RoomComponent = __decorate([

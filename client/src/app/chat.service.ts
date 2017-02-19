@@ -62,4 +62,20 @@ export class ChatService {
     return observable;
   }
 
+sendMessage(roomName: string, messsage: string): Observable<boolean> {
+  const obs = new Observable(observer => {
+    const param = {
+      room: roomName,
+      msg: messsage
+    }
+    this.socket.emit('sendmsg', param, function(a: boolean) {
+      observer.next(a);
+    })
+  });
+
+  return obs;
+
+}
+
+
 }

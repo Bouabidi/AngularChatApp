@@ -63,6 +63,19 @@ var ChatService = (function () {
         });
         return observable;
     };
+    ChatService.prototype.sendMessage = function (roomName, messsage) {
+        var _this = this;
+        var obs = new Observable(function (observer) {
+            var param = {
+                room: roomName,
+                msg: messsage
+            };
+            _this.socket.emit('sendmsg', param, function (a) {
+                observer.next(a);
+            });
+        });
+        return obs;
+    };
     return ChatService;
 }());
 ChatService = __decorate([
