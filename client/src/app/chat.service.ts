@@ -82,6 +82,22 @@ export class ChatService {
     return obs;
   }
 
+  getConnectedUserList(roomName: string, op: string): Observable<string[]> {
+    const obs = new Observable(observer => {
+      console.log("get connected users");
+      this.socket.on('updateusers', (roomName, users, op) => {
+        console.log("users:");
+        console.log(users);
+        const strArr: string[] = [];
+        for (const x in users) {
+          strArr.push(x);
+        }
+        observer.next(strArr);
+      });
+    });
+    return obs;
+  }
+
   addRoom(roomName: string): Observable<boolean> {
     const observable = new Observable(observer => {
       // TODO validate that the room name is validate

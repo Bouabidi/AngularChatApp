@@ -11,3 +11,9 @@
   <input placeholder="Write message" [(ngModel)]="newMessage" />
   <button (click)="onSendMessage()">Send</button>
 </div>
+<p>Connected users:</p>
+<ul>
+  <li *ngFor="let user of users">
+    <p>{{user}}</p>
+  </li>
+</ul>
