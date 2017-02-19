@@ -39,6 +39,15 @@ var ChatService = (function () {
         });
         return observable;
     };
+    ChatService.prototype.leaveRoom = function (roomName) {
+        var _this = this;
+        var observable = new Observable(function (observer) {
+            _this.socket.emit('partroom', roomName, function (a) {
+                observer.next(a);
+            });
+        });
+        return observable;
+    };
     ChatService.prototype.getRoomList = function () {
         var _this = this;
         var obs = new Observable(function (observer) {
@@ -53,17 +62,13 @@ var ChatService = (function () {
         });
         return obs;
     };
-    ChatService.prototype.getRoomMessages = function (room) {
+    ChatService.prototype.getRoomMessages = function (roomName) {
         var _this = this;
+        console.log("Getting messages");
         var obs = new Observable(function (observer) {
-            _this.socket.emit('rooms');
-            _this.socket.on('roomlist', function (lst) {
-                var strArr = [];
-                for (var x in lst) {
-                    strArr.push(x);
-                    console.log(lst);
-                }
-                observer.next(strArr);
+            _this.socket.on('updatechat', function (roomName, messages) {
+                console.log(messages);
+                observer.next(messages);
             });
         });
         return obs;

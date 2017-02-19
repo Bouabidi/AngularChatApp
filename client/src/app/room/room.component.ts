@@ -27,8 +27,17 @@ export class RoomComponent implements OnInit {
   onSendMessage() {
     if (this.newMessage.length < 1) {
       return;
-    }
+    };
+
     this.chatService.sendMessage(this.roomId, this.newMessage).subscribe(succeeded => {
+    });
+  }
+
+  onLeaveRoom() {
+    this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
+      if (succeeded === true) {
+        this.router.navigate(['rooms']);
+      }
     });
   }
 

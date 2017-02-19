@@ -27,7 +27,16 @@ var RoomComponent = (function () {
         if (this.newMessage.length < 1) {
             return;
         }
+        ;
         this.chatService.sendMessage(this.roomId, this.newMessage).subscribe(function (succeeded) {
+        });
+    };
+    RoomComponent.prototype.onLeaveRoom = function () {
+        var _this = this;
+        this.chatService.leaveRoom(this.roomId).subscribe(function (succeeded) {
+            if (succeeded === true) {
+                _this.router.navigate(['rooms']);
+            }
         });
     };
     return RoomComponent;

@@ -37,6 +37,16 @@ export class ChatService {
     return observable;
   }
 
+  leaveRoom(roomName: string): Observable<boolean> {
+    const observable = new Observable(observer => {
+      this.socket.emit('partroom', roomName, function(a: boolean) {
+        observer.next(a);
+      });
+    });
+
+    return observable;
+  }
+
   getRoomList(): Observable<string[]> {
     const obs = new Observable(observer => {
       this.socket.emit('rooms');
@@ -51,16 +61,12 @@ export class ChatService {
     return obs;
   }
 
-  getRoomMessages(room): Observable<string[]> {
+  getRoomMessages(roomName: string): Observable<string[]> {
+    console.log("Getting messages")
     const obs = new Observable(observer => {
-      this.socket.emit('rooms');
-      this.socket.on('roomlist', (lst) => {
-        const strArr: string[] = [];
-        for(let x in lst) {
-          strArr.push(x);
-          console.log(lst);
-        }
-        observer.next(strArr);
+      this.socket.on('updatechat', (roomName, messages) => {
+        console.log(messages);
+        observer.next(messages);
       });
     });
     return obs;
