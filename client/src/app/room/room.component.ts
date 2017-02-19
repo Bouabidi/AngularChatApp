@@ -22,7 +22,8 @@ export class RoomComponent implements OnInit {
 
   onSendMessage() {
     this.chatService.sendMessage(this.roomId, this.message).subscribe(succeeded => {
-    })
+
+    });
   }
 
 
