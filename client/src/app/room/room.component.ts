@@ -12,6 +12,8 @@ export class RoomComponent implements OnInit {
   roomId: string;
   newMessage: string;
   messages: string[];
+  users: string[];
+  op: string;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -20,6 +22,9 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.chatService.getRoomMessages(this.roomId).subscribe(lst => {
       this.messages = lst;
+    });
+    this.chatService.getConnectedUserList(this.roomId, this.op).subscribe(lst => {
+      this.users = lst;
     });
     this.roomId = this.route.snapshot.params['id'];
   }
