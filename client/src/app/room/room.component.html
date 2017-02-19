@@ -4,10 +4,10 @@
 <input placeholder="Write message" [(ngModel)]="newMessage" />
 <button (click)="onSendMessage()">Send</button>
 
-<p>Message history:</p>
+<p><b>Message history:</b></p>
 <ul>
   <li *ngFor="let message of messages">
-    <p>{{message.message}}</p>
+    <p><b>{{message.nick}}</b> says: {{message.message}}</p>
   </li>
 </ul>
 
