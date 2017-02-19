@@ -1,14 +1,13 @@
+<button (click)="onLeaveRoom()">Leave room: {{roomId}}</button>
 
-<p>Welcome to room: {{roomId}}</p>
-
-<input placeholder="Write message" [(ngModel)]="newMessage" />
-<button (click)="onSendMessage()">Send</button>
 
 <p><b>Message history:</b></p>
 <ul>
   <li *ngFor="let message of messages">
-    <p><b>{{message.nick}}</b> says: {{message.message}}</p>
+    <p><b>{{message.nick}} says:</b> {{message.message}}</p>
   </li>
 </ul>
-
-<button (click)="onLeaveRoom()">Leave room: {{roomId}}</button>
+<div>
+  <input placeholder="Write message" [(ngModel)]="newMessage" />
+  <button (click)="onSendMessage()">Send</button>
+</div>
