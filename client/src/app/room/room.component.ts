@@ -34,11 +34,8 @@ export class RoomComponent implements OnInit {
   }
 
   onLeaveRoom() {
-    this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
-      if (succeeded === true) {
-        this.router.navigate(['rooms']);
-      }
-    });
+      this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {});
+      this.router.navigate(['/rooms']);
   }
 
 
