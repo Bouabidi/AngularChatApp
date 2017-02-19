@@ -35,6 +35,17 @@ var RoomListComponent = (function () {
             }
         });
     };
+    RoomListComponent.prototype.onJoinRoom = function (roomName) {
+        var _this = this;
+        if (roomName.length < 1) {
+            return;
+        }
+        this.chatService.joinRoom(roomName).subscribe(function (succeeded) {
+            if (succeeded === true) {
+                _this.router.navigate(['rooms', roomName]);
+            }
+        });
+    };
     return RoomListComponent;
 }());
 RoomListComponent = __decorate([

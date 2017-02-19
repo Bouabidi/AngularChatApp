@@ -1,5 +1,12 @@
 # Chat App - Angular
 
+## Setup
+
+npm install angular
+npm install -g angular-cli
+cd client
+npm install
+
 ## Server running
 cd server
 

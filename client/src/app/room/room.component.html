@@ -1,1 +1,11 @@
 <p>Welcome to room: {{roomId}}</p>
+
+<input placeholder="Write message" [(ngModel)]="newMessage" />
+<button (click)="onSendMessage()">Send</button>
+
+<p>Message history:</p>
+<ul>
+  <li *ngFor="let message of messages">
+    <p>{{message}}</p>
+  </li>
+</ul>

@@ -24,6 +24,19 @@ export class ChatService {
     return observable;
   }
 
+  joinRoom(roomName: string): Observable<boolean> {
+    const observable = new Observable(observer => {
+      const param = {
+        room: roomName
+      };
+      this.socket.emit('joinroom', param, function(a: boolean) {
+          observer.next(a);
+      });
+    });
+
+    return observable;
+  }
+
   getRoomList(): Observable<string[]> {
     const obs = new Observable(observer => {
       this.socket.emit('rooms');
@@ -31,6 +44,21 @@ export class ChatService {
         const strArr: string[] = [];
         for (const x in lst) {
           strArr.push(x);
+        }
+        observer.next(strArr);
+      });
+    });
+    return obs;
+  }
+
+  getRoomMessages(room): Observable<string[]> {
+    const obs = new Observable(observer => {
+      this.socket.emit('rooms');
+      this.socket.on('roomlist', (lst) => {
+        const strArr: string[] = [];
+        for(let x in lst) {
+          strArr.push(x);
+          console.log(lst);
         }
         observer.next(strArr);
       });
@@ -62,10 +90,10 @@ export class ChatService {
     return observable;
   }
 
-sendMessage(roomName: string, messsage: string): Observable<boolean> {
+sendMessage(room: string, messsage: string): Observable<boolean> {
   const obs = new Observable(observer => {
     const param = {
-      room: roomName,
+      roomName: room,
       msg: messsage
     }
     this.socket.emit('sendmsg', param, function(a: boolean) {

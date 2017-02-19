@@ -1,7 +1,7 @@
 <p>Available Rooms:<p>
 <ul>
   <li *ngFor="let room of rooms">
-    <a [routerLink]="['/rooms', room]">{{room}}</a>
+    <a (click)="onJoinRoom(room)">{{room}}</a>
   </li>
 </ul>
 

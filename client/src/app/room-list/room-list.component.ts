@@ -15,6 +15,7 @@ export class RoomListComponent implements OnInit {
   rooms: string[];
   newRoomName: string;
   users: string[];
+  roomPassword: string;
 
   ngOnInit() {
     this.chatService.getRoomList().subscribe(lst => {
@@ -33,6 +34,18 @@ export class RoomListComponent implements OnInit {
     this.chatService.addRoom(this.newRoomName).subscribe(succeeded => {
       if (succeeded === true) {
         this.router.navigate(['rooms', this.newRoomName]);
+      }
+    });
+
+  }
+  onJoinRoom(roomName) {
+    if (roomName.length < 1) {
+      return;
+    }
+
+    this.chatService.joinRoom(roomName).subscribe(succeeded => {
+      if (succeeded === true) {
+        this.router.navigate(['rooms', roomName]);
       }
     });
 

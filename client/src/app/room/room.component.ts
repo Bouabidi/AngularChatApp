@@ -10,19 +10,25 @@ import { ChatService } from '../chat.service';
 export class RoomComponent implements OnInit {
 
   roomId: string;
-  message: string;
+  newMessage: string;
+  messages: string[];
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private chatService: ChatService) { }
 
   ngOnInit() {
+    this.chatService.getRoomMessages(this.roomId).subscribe(lst => {
+      this.messages = lst;
+    });
     this.roomId = this.route.snapshot.params['id'];
   }
 
   onSendMessage() {
-    this.chatService.sendMessage(this.roomId, this.message).subscribe(succeeded => {
-
+    if (this.newMessage.length < 1) {
+      return;
+    }
+    this.chatService.sendMessage(this.roomId, this.newMessage).subscribe(succeeded => {
     });
   }
 

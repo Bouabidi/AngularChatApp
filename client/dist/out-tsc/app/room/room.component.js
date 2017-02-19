@@ -17,10 +17,17 @@ var RoomComponent = (function () {
         this.chatService = chatService;
     }
     RoomComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.chatService.getRoomMessages(this.roomId).subscribe(function (lst) {
+            _this.messages = lst;
+        });
         this.roomId = this.route.snapshot.params['id'];
     };
     RoomComponent.prototype.onSendMessage = function () {
-        this.chatService.sendMessage(this.roomId, this.message).subscribe(function (succeeded) {
+        if (this.newMessage.length < 1) {
+            return;
+        }
+        this.chatService.sendMessage(this.roomId, this.newMessage).subscribe(function (succeeded) {
         });
     };
     return RoomComponent;

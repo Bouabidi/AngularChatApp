@@ -1,6 +1,6 @@
-var express = require('express'), 
-app = express(), 
-http = require('http'), 
+var express = require('express'),
+app = express(),
+http = require('http'),
 server = http.createServer(app),
 io = require('socket.io').listen(server);
 
@@ -111,7 +111,7 @@ io.sockets.on('connection', function (socket) {
 
 	// when the client emits 'sendchat', this listens and executes
 	socket.on('sendmsg', function (data) {
-		
+
 		var userAllowed = false;
 
 		//Check if user is allowed to send message.
@@ -121,7 +121,7 @@ io.sockets.on('connection', function (socket) {
 		if(rooms[data.roomName].ops[socket.username] !== undefined) {
 			userAllowed = true;
 		}
-
+		console.log("If userAllowed add message: " + data.msg.substring(0, 200));
 		if(userAllowed) {
 			//Update the message history for the room that the user sent the message to.
 			var messageObj = {
@@ -131,6 +131,7 @@ io.sockets.on('connection', function (socket) {
 			};
 			rooms[data.roomName].addMessage(messageObj);
 			io.sockets.emit('updatechat', data.roomName, rooms[data.roomName].messageHistory);
+			console.log("New added message " + messageObj.message);
 		}
 	});
 
