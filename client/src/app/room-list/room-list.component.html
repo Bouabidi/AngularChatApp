@@ -1,4 +1,7 @@
+<button (click)="onGetPrivateMessage()">Private Messages</button>
+
 <p>Available Rooms:<p>
+
 <ul>
   <li *ngFor="let room of rooms">
     <a (click)="onJoinRoom(room)">{{room}}</a>
@@ -11,6 +14,6 @@
 <p>Connected Users:<p>
 <ul>
   <li *ngFor="let user of users">
-    {{user}}
+    <a (click)="onUserClicked(user)">{{user}}</a>
   </li>
 </ul>

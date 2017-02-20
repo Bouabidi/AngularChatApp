@@ -1,0 +1,11 @@
+
+  <p>
+    Private chat with {{otherChatUser}}
+  </p>
+
+  <button (click)="onGoBack()">Leave private chat</button>
+
+  <div>
+    <input placeholder="Write message" [(ngModel)]="newMessage" />
+    <button (click)="onSendPrivateMessage()">Send</button>
+  </div>

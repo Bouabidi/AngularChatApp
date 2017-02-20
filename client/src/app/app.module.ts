@@ -9,13 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
 import { ChatService } from './chat.service';
+import { PrivateChatComponent } from './private-chat/private-chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RoomListComponent,
-    RoomComponent
+    RoomComponent,
+    PrivateChatComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,12 @@ import { ChatService } from './chat.service';
     }, {
       path: 'rooms/:id',
       component: RoomComponent
+    }, {
+      path: 'private/:id',
+      component: PrivateChatComponent
+    }, {
+      path: 'private',
+      component: PrivateChatComponent
     }])
   ],
   providers: [ChatService],

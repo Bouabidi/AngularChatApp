@@ -54,4 +54,13 @@ export class RoomListComponent implements OnInit {
     });
 
   }
+
+  onUserClicked(userClicked) {
+    this.router.navigate(['private', userClicked]);
+  }
+
+  onGetPrivateMessage() {
+    this.router.navigate(['private']);
+  }
+
 }

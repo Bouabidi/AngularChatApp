@@ -71,6 +71,17 @@ export class ChatService {
     return obs;
   }
 
+  getPrivateMessages(otherChatUser: string): Observable<string[]> {
+    console.log("Getting Private messages")
+    const obs = new Observable(observer => {
+      this.socket.on('recv_privatemsg', (roomName, messages) => {
+        console.log(messages);
+        observer.next(messages);
+      });
+    });
+    return obs;
+  }
+
   getRoomMessages(roomName: string): Observable<string[]> {
     console.log("Getting messages")
     const obs = new Observable(observer => {
@@ -128,13 +139,28 @@ sendMessage(room: string, messsage: string): Observable<boolean> {
       roomName: room,
       msg: messsage
     }
-    this.socket.emit('sendmsg', param, function(a: boolean) {
+    this.socket.emit('sendmsg', function(a: boolean) {
       observer.next(a);
     })
   });
 
   return obs;
 
+}
+
+sendPrivateMessage(otherChatUser: string, message: string): Observable<boolean> {
+  const obs = new Observable(observer => {
+    console.log('Sending private message: ' + message + ' to: ' + otherChatUser);
+    const param = {
+      nick: otherChatUser,
+      message: message
+    }
+    this.socket.emit('privatemsg',param ,function(a: boolean) {
+      observer.next(a);
+    })
+  });
+
+  return obs;
 }
 
 
