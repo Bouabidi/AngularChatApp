@@ -15,7 +15,6 @@ export class RoomComponent implements OnInit {
   users: string[];
   op: string;
   userToKick: string;
-  currentUser: string;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
