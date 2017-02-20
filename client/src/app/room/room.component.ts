@@ -14,6 +14,7 @@ export class RoomComponent implements OnInit {
   messages: string[];
   users: string[];
   op: string;
+  userToKick: string;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class RoomComponent implements OnInit {
       this.users = lst;
     });
     this.roomId = this.route.snapshot.params['id'];
+    this.userToKick = "";
   }
 
   onSendMessage() {
@@ -42,6 +44,10 @@ export class RoomComponent implements OnInit {
       this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {});
       this.router.navigate(['/rooms']);
   }
+
+    onKickUser() {
+        this.chatService.kickUser({user: this.userToKick, room: this.roomId}).subscribe(suceeded => {});
+    }
 
 
 }

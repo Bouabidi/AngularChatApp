@@ -37,6 +37,16 @@ export class ChatService {
     return observable;
   }
 
+    kickUser(user): Observable<boolean> {
+    const observable = new Observable(observer => {
+        this.socket.emit('kick', user, function(a: boolean) {
+            observer.next(a);
+        });
+    });
+
+    return observable;
+  }
+
   leaveRoom(roomName: string): Observable<boolean> {
     const observable = new Observable(observer => {
       this.socket.emit('partroom', roomName, function(a: boolean) {
