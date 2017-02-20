@@ -6,7 +6,6 @@ module.exports = function ( grunt ) {
      src: ['client/src/**/*.js'],
      gruntfile: ['Gruntfile.js'],
      options: {
-      'esversion': 6,
       curly:  true,
       immed:  true,
       newcap: true,
@@ -30,7 +29,7 @@ module.exports = function ( grunt ) {
 
   tslint: {
       files: {
-          src: ['client/src/**/*.ts', 'client/src/**/*.ts']
+          src: ['client/src/**/*.ts']
       },
       options: {
           // Task-specific options go here.

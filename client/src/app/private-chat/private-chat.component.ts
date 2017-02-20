@@ -12,7 +12,6 @@ export class PrivateChatComponent implements OnInit {
 
   newMessage: string;
   otherChatUser: string;
-  sendingMessage
 
   constructor(private router: Router,
     private route: ActivatedRoute,

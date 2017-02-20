@@ -21,14 +21,14 @@ export class RoomComponent implements OnInit {
     private chatService: ChatService) { }
 
   ngOnInit() {
-    this.chatService.getRoomMessages(this.roomId).subscribe(lst => {
+    this.chatService.getRoomMessages().subscribe(lst => {
       this.messages = lst;
     });
-    this.chatService.getConnectedUserList(this.roomId, this.op).subscribe(lst => {
+    this.chatService.getConnectedUserList().subscribe(lst => {
       this.users = lst;
     });
     this.roomId = this.route.snapshot.params['id'];
-    this.userToKick = "";
+    this.userToKick = '';
   }
 
   onSendMessage() {
