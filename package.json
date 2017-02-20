@@ -1,0 +1,29 @@
+{
+  "name": "angularchatapp",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "index.js",
+  "dependencies": {
+    "grunt-cli": "^1.2.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-tslint": "^4.0.1",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palaogn/AngularChatApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palaogn/AngularChatApp/issues"
+  },
+  "homepage": "https://github.com/palaogn/AngularChatApp#readme"
+}
