@@ -34,7 +34,7 @@ app-login {
   text-align: center;
 }
 
-button {
+button, a{
 	-moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	box-shadow:inset 0px 1px 3px 0px #91b8b3;
