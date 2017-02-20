@@ -28,7 +28,7 @@ export class RoomComponent implements OnInit {
       this.users = lst;
     });
     this.roomId = this.route.snapshot.params['id'];
-    this.userToKick = "";
+    this.userToKick = '';
   }
 
   onSendMessage() {
