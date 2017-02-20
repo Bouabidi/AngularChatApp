@@ -1,16 +1,20 @@
-<button (click)="onLeaveRoom()">Leave room: {{roomId}}</button>
+<button (click)="onLeaveRoom()">Leave room:<b> {{romId}}</b></button>
+
+
 
 
 <p><b>Message history:</b></p>
-<ul>
-  <li *ngFor="let message of messages">
-    <p><b>{{message.nick}} says:</b> {{message.message}}</p>
-  </li>
-</ul>
+
+<div *ngFor="let message of messages">
+  <p><b>{{message.nick}}:</b> {{message.message}}</p>
+</div>
+
 <div>
-  <input placeholder="Write message" [(ngModel)]="newMessage" />
+  <input placeholder="Write message" [(ngModel)]="newMessage" (keyup.enter)="onSendMessage()" />
   <button (click)="onSendMessage()">Send</button>
 </div>
+
+
 <p>Connected users:</p>
 <ul>
   <li *ngFor="let user of users">
@@ -20,6 +24,6 @@
 
 
 
-<input placeholder="User to kick" [(ngModel)]="userToKick">
+<input placeholder="User to kick" [(ngModel)]="userToKick" (keyup.enter)="onKickUser()">
 <button (click)="onKickUser()">Kick user</button>
 <button (click)="onBanUser()">Ban user</button>
