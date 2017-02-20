@@ -17,8 +17,8 @@
 </ul>
 
 <div id="private_messages">
-  <h3>Your Private Messges: </h3>
-  <ul>
-  <!---  <p><b>{{privateMessage.nick}}:</b> {{privateMessage.message}}</p> --->
-  </ul>
+  <h3>Your Private Messages: </h3>
+  <div *ngFor="let privateMessage of privateMessages">
+    <p><b>{{privateMessage.sender}}:</b> {{privateMessage.message}}</p>
+  </div>
 </div>

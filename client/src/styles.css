@@ -80,7 +80,7 @@ b {
 
 #private_messages {
   height: 100px;
-  width:50%;
+  width:100%;
   background: white;
   margin-top: 100px;
   overflow: scroll;
