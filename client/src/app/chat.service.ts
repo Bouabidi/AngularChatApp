@@ -74,7 +74,7 @@ export class ChatService {
   getPrivateMessages(otherChatUser: string): Observable<string[]> {
     console.log("Getting Private messages")
     const obs = new Observable(observer => {
-      this.socket.on('recv_privatemsg', (roomName, messages) => {
+      this.socket.on('recv_privatemsg', (otherChatUser, messages) => {
         console.log(messages);
         observer.next(messages);
       });
