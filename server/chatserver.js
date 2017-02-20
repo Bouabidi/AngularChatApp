@@ -184,6 +184,8 @@ io.sockets.on('connection', function (socket) {
 	//When a user tries to kick another user this gets performed.
 	socket.on('kick', function (kickObj, fn) {
 		console.log(socket.username + " kicked " + kickObj.user + " from " + kickObj.room);
+    console.log(rooms[kickObj.room].ops);
+    console.log(rooms[kickObj.room].ops[socket.username])
 		if(rooms[kickObj.room].ops[socket.username] !== undefined) {
 			//Remove the user from the room roster.
 			delete rooms[kickObj.room].users[kickObj.user];

@@ -33,7 +33,11 @@ export class RoomListComponent implements OnInit {
 
     this.chatService.addRoom(this.newRoomName).subscribe(succeeded => {
       if (succeeded === true) {
-        this.router.navigate(['rooms', this.newRoomName]);
+        this.chatService.joinRoom(this.newRoomName).subscribe(succeeded => {
+          if (succeeded === true) {
+            this.router.navigate(['rooms', this.newRoomName]);
+          }
+        });
       }
     });
 
