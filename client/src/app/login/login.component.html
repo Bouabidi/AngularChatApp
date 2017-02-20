@@ -1,4 +1,4 @@
-<input placeholder="Username" [(ngModel)]="userName" />
+<input placeholder="Username" [(ngModel)]="userName" (keyup.enter)="onLogin()" />
 <button (click)="onLogin()">Login</button>
 <div *ngIf="loginFailed">
   Sorry, but this username is already taken

@@ -222,9 +222,9 @@ io.sockets.on('connection', function (socket) {
 		}
 	});
 
-		//When a user tries to deop another user this gets performed.
+  //When a user tries to deop another user this gets performed.
 	socket.on('deop', function (deopObj, fn) {
-		console.log(socket.username + " deopped " + deopObj.user + " from " + deopObj.room);
+		console.log(socket.username + " dropped " + deopObj.user + " from " + deopObj.room);
 		//If user is OP
 		if(rooms[deopObj.room].ops[socket.username] !== undefined) {
 			//Remove the user from the room op roster.
