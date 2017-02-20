@@ -9,14 +9,12 @@ export class ChatService {
   constructor() {
     this.socket = io('http://localhost:8080/');
     this.socket.on('connect', function(){
-      console.log('connect');
   });
 }
 
   login(userName: string): Observable<boolean> {
     const observable = new Observable(observer => {
       this.socket.emit('adduser', userName, succeeded => {
-        console.log('Reply received');
         observer.next(succeeded);
       });
     });
@@ -34,8 +32,6 @@ export class ChatService {
         room: roomName
       };
       this.socket.emit('joinroom', param, function(a: boolean) {
-          console.log("param: ");
-          console.log(param);
           observer.next(a);
       });
     });
@@ -77,7 +73,9 @@ export class ChatService {
       this.socket.on('roomlist', (lst) => {
         const strArr: string[] = [];
         for (const x in lst) {
-          strArr.push(x);
+          if (x !== undefined) {
+            strArr.push(x);
+          }
         }
         observer.next(strArr);
       });
@@ -86,22 +84,17 @@ export class ChatService {
   }
 
   getPrivateMessages(): Observable<string[]> {
-    console.log("Getting Private messages")
     const obs = new Observable(observer => {
       this.socket.on('recv_privatemsg', (user, messages) => {
-        console.log('These private messages: ');
-        console.log(messages);
         observer.next(messages);
       });
     });
     return obs;
   }
 
-  getRoomMessages(roomName: string): Observable<string[]> {
-    console.log("Getting messages")
+  getRoomMessages(): Observable<string[]> {
     const obs = new Observable(observer => {
       this.socket.on('updatechat', (roomName, messages) => {
-        console.log(messages);
         observer.next(messages);
       });
     });
@@ -118,15 +111,14 @@ export class ChatService {
     return obs;
   }
 
-  getConnectedUserList(roomName: string, op: string): Observable<string[]> {
+  getConnectedUserList(): Observable<string[]> {
     const obs = new Observable(observer => {
-      console.log("get connected users");
       this.socket.on('updateusers', (roomName, users, op) => {
-        console.log("users:");
-        console.log(users);
         const strArr: string[] = [];
         for (const x in users) {
-          strArr.push(x);
+          if (x !== undefined) {
+            strArr.push(x);
+          }
         }
         observer.next(strArr);
       });
@@ -153,10 +145,10 @@ sendMessage(room: string, messsage: string): Observable<boolean> {
     const param = {
       roomName: room,
       msg: messsage
-    }
-    this.socket.emit('sendmsg', param,function(a: boolean) {
+    };
+    this.socket.emit('sendmsg', param, function(a: boolean) {
       observer.next(a);
-    })
+    });
   });
 
   return obs;
@@ -165,14 +157,13 @@ sendMessage(room: string, messsage: string): Observable<boolean> {
 
 sendPrivateMessage(otherChatUser: string, message: string): Observable<boolean> {
   const obs = new Observable(observer => {
-    console.log('Sending private message: ' + message + ' to: ' + otherChatUser);
     const param = {
       nick: otherChatUser,
       message: message
-    }
-    this.socket.emit('privatemsg',param ,function(a: boolean) {
+    };
+    this.socket.emit('privatemsg', param , function(a: boolean) {
       observer.next(a);
-    })
+    });
   });
 
   return obs;
