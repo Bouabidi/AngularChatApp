@@ -3,3 +3,9 @@
 </h1>
 
 <router-outlet> </router-outlet>
+
+<div *ngFor="let message of messages">
+  <p><b>{{message.nick}}:</b> {{message.message}}</p>
+</div>
+
+

@@ -24,12 +24,18 @@ export class ChatService {
     return observable;
   }
 
+  setCurrentUser(username: string) {
+    this.socket.username = username;
+  }
+
   joinRoom(roomName: string): Observable<boolean> {
     const observable = new Observable(observer => {
       const param = {
         room: roomName
       };
       this.socket.emit('joinroom', param, function(a: boolean) {
+          console.log("param: ");
+          console.log(param);
           observer.next(a);
       });
     });
@@ -37,13 +43,21 @@ export class ChatService {
     return observable;
   }
 
-    kickUser(user): Observable<boolean> {
+  banUser(user): Observable<boolean> {
     const observable = new Observable(observer => {
-        this.socket.emit('kick', user, function(a: boolean) {
-            observer.next(a);
-        });
+      this.socket.emit('ban', user, function(a: boolean) {
+          observer.next(a);
+      });
     });
+    return observable;
+  }
 
+  kickUser(user): Observable<boolean> {
+    const observable = new Observable(observer => {
+      this.socket.emit('kick', user, function(a: boolean) {
+          observer.next(a);
+      });
+    });
     return observable;
   }
 

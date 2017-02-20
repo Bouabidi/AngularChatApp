@@ -41,13 +41,18 @@ export class RoomComponent implements OnInit {
   }
 
   onLeaveRoom() {
-      this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {});
-      this.router.navigate(['/rooms']);
+    this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {});
+    this.router.navigate(['/rooms']);
   }
 
-    onKickUser() {
-        this.chatService.kickUser({user: this.userToKick, room: this.roomId}).subscribe(suceeded => {});
-    }
+  onKickUser() {
+    this.chatService.kickUser({user: this.userToKick, room: this.roomId})
+        .subscribe(suceeded => {});
+  }
 
+  onBanUser() {
+    this.chatService.banUser({user: this.userToKick, room: this.roomId})
+        .subscribe(suceeded => {});
+  }
 
 }
