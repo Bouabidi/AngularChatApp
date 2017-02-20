@@ -77,3 +77,10 @@ button:active {
 b {
   color:#e42f7c;
 }
+
+#private_messages {
+  height: 100px;
+  background: white;
+  margin-top: 100px;
+  overflow: scroll;
+}
