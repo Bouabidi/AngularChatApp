@@ -5,7 +5,7 @@
   </li>
 </ul>
 
-<input [(ngModel)]="newRoomName" />
+<input [(ngModel)]="newRoomName" (keyup.enter)="onNewRoom()" />
 <button (click)="onNewRoom()">Add new room</button>
 
 <p>Connected Users:<p>
