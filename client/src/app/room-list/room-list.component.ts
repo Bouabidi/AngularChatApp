@@ -16,6 +16,7 @@ export class RoomListComponent implements OnInit {
   newRoomName: string;
   users: string[];
   roomPassword: string;
+  privateMessages: string[];
 
   ngOnInit() {
     this.chatService.getRoomList().subscribe(lst => {
@@ -23,6 +24,9 @@ export class RoomListComponent implements OnInit {
     });
     this.chatService.getUserList().subscribe(lst => {
       this.users = lst;
+    })
+    this.chatService.getPrivateMessages().subscribe(lst => {
+      this.privateMessages = lst;
     })
   }
 
@@ -57,10 +61,6 @@ export class RoomListComponent implements OnInit {
 
   onUserClicked(userClicked) {
     this.router.navigate(['private', userClicked]);
-  }
-
-  onGetPrivateMessage() {
-    this.router.navigate(['private']);
   }
 
 }
