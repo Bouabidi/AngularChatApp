@@ -88,7 +88,8 @@ export class ChatService {
   getPrivateMessages(): Observable<string[]> {
     console.log("Getting Private messages")
     const obs = new Observable(observer => {
-      this.socket.on('recv_privatemsg', (messages) => {
+      this.socket.on('recv_privatemsg', (user, messages) => {
+        console.log('These private messages: ');
         console.log(messages);
         observer.next(messages);
       });
@@ -153,7 +154,7 @@ sendMessage(room: string, messsage: string): Observable<boolean> {
       roomName: room,
       msg: messsage
     }
-    this.socket.emit('sendmsg', function(a: boolean) {
+    this.socket.emit('sendmsg', param,function(a: boolean) {
       observer.next(a);
     })
   });
